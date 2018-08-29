@@ -1,0 +1,2 @@
+# GetBytesFromZXingResult__csharp
+GetBytesFromZXingResult
