@@ -18,7 +18,7 @@ namespace ConsoleAppQRCodeReader
         /// Алгоритм в функции был переписан из алгоритма для Java: https://stackoverflow.com/a/4981787/5909792
         /// </summary>
         /// <param name="result"></param>
-        /// <returns></returns>
+        /// <returns>byte[]</returns>
         static byte[] GetBytesFromZXingResult(Result result)
         {
             var byteSegments = (IList<byte[]>)result.ResultMetadata[ResultMetadataType.BYTE_SEGMENTS];
@@ -49,9 +49,9 @@ namespace ConsoleAppQRCodeReader
             // Если из локального файла
             //var barcodeBitmap = (Bitmap) Image.FromFile("qr_code_1.png");
 
+            // Берем картинки из ресурсов
             Bitmap[] barcodeBitmapList = { Properties.Resource.Image1, Properties.Resource.Image2 };
 
-            // Берем картинки из ресурсов
             foreach (var barcodeBitmap in barcodeBitmapList)
             {
                 // Пытаемся разобрать qr-код
@@ -66,7 +66,7 @@ namespace ConsoleAppQRCodeReader
                     Console.WriteLine("Result: " + result);
                     Console.WriteLine("result.Text: " + result.Text);
 
-                    // А RawBytes, похоже означають саму структуру данных QR-кода, но не данные в нем:
+                    // Поле RawBytes, похоже означает саму структуру данных QR-кода, но не данные в нем:
                     Console.WriteLine("result.RawBytes: " + Encoding.UTF8.GetString(result.RawBytes));
 
                     // Применяем функцию чтобы получить байтовый массив данных в QR-коде, в обход поля ZXing.Result.Text
