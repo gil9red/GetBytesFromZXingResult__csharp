@@ -78,7 +78,7 @@ namespace ConsoleAppQRCodeReader
             }
 
             // Для ожидания ввода, чтобы консоль сразу не закрылась
-            Console.In.Read();
+            Console.Read();
         }
     }
 }
